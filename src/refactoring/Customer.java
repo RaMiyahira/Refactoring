@@ -19,7 +19,7 @@ public class Customer {
       return _name;
    }
   
-  public String statement() {
+   public String statement() {
      double totalAmount = 0;
      int frequentRenterPoints = 0;
      Enumeration rentals = _rentals.elements();
@@ -28,7 +28,7 @@ public class Customer {
 
         Rental each = (Rental) rentals.nextElement();
 
-        double thisAmount = amountFor(each);   // <<< ALTERAÇÃO DO REFACTORING 1
+        double thisAmount = amountFor(each);   // método extraído
 
         // add frequent renter points
         frequentRenterPoints ++;
@@ -49,25 +49,25 @@ public class Customer {
      return result;
    }
 
-   // <<< MÉTODO EXTRAÍDO (NOVO)
-   private double amountFor(Rental each) {
+   // MÉTODO EXTRAÍDO + RENOMEADO (Refactoring 1 e 2)
+   private double amountFor(Rental aRental) {
       double result = 0;
 
-      switch (each.getMovie().getPriceCode()) {
+      switch (aRental.getMovie().getPriceCode()) {
          case Movie.REGULAR:
             result += 2;
-            if (each.getDaysRented() > 2)
-               result += (each.getDaysRented() - 2) * 1.5;
+            if (aRental.getDaysRented() > 2)
+               result += (aRental.getDaysRented() - 2) * 1.5;
             break;
 
          case Movie.NEW_RELEASE:
-            result += each.getDaysRented() * 3;
+            result += aRental.getDaysRented() * 3;
             break;
 
          case Movie.CHILDRENS:
             result += 1.5;
-            if (each.getDaysRented() > 3)
-               result += (each.getDaysRented() - 3) * 1.5;
+            if (aRental.getDaysRented() > 3)
+               result += (aRental.getDaysRented() - 3) * 1.5;
             break;
       }
 
