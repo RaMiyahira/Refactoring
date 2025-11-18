@@ -26,7 +26,6 @@ public class Movie {
       return _title;
   }
 
-  // >>> MÉTODO EXTRAÍDO DE Rental.getCharge
   public double getCharge(int daysRented) {
       double result = 0;
 
@@ -49,5 +48,14 @@ public class Movie {
       }
 
       return result;
+  }
+
+  // <<< NOVO: veio de Rental.getFrequentRenterPoints
+  public int getFrequentRenterPoints(int daysRented) {
+      if ((getPriceCode() == Movie.NEW_RELEASE) &&
+          daysRented > 1) {
+         return 2;
+      }
+      return 1;
   }
 }

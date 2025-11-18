@@ -18,16 +18,12 @@ public class Rental {
       return _movie;
    }
 
-   // >>> AGORA SÓ CHAMA O MÉTODO DA CLASSE Movie
    public double getCharge() {
       return _movie.getCharge(_daysRented);
    }
 
+   // <<< AGORA SÓ DELEGA
    public int getFrequentRenterPoints() {
-      if ((_movie.getPriceCode() == Movie.NEW_RELEASE) &&
-          _daysRented > 1) {
-         return 2;
-      }
-      return 1;
+      return _movie.getFrequentRenterPoints(_daysRented);
    }
 }
