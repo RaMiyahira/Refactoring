@@ -20,7 +20,6 @@ public class Customer {
         return _name;
     }
 
-    // usado pelas Statements
     public Enumeration getRentals() {
         return _rentals.elements();
     }
