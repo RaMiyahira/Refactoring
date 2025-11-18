@@ -18,7 +18,6 @@ public class Rental {
       return _movie;
    }
 
-   // <<< MÉTODO NOVO (vem do amountFor, renomeado)
    public double getCharge() {
       double result = 0;
 
@@ -41,5 +40,13 @@ public class Rental {
       }
 
       return result;
+   }
+
+   public int getFrequentRenterPoints() {
+      if ((_movie.getPriceCode() == Movie.NEW_RELEASE) &&
+          _daysRented > 1) {
+         return 2;   // com bônus
+      }
+      return 1;      // caso geral
    }
 }
