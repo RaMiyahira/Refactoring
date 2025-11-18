@@ -20,25 +20,17 @@ public class Customer {
         return _name;
     }
 
+    // usado pelas Statements
     public Enumeration getRentals() {
         return _rentals.elements();
     }
 
     public String statement() {
-        Enumeration rentals = _rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(each.getCharge()) + "\n";
-        }
+        return new TextStatement().value(this);
+    }
 
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " +
-                String.valueOf(getTotalFrequentRenterPoints()) +
-                " frequent renter points";
-
-        return result;
+    public String htmlStatement() {
+        return new HtmlStatement().value(this);
     }
 
     public double getTotalCharge() {
