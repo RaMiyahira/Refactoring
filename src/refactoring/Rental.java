@@ -18,35 +18,16 @@ public class Rental {
       return _movie;
    }
 
+   // >>> AGORA SÓ CHAMA O MÉTODO DA CLASSE Movie
    public double getCharge() {
-      double result = 0;
-
-      switch (_movie.getPriceCode()) {
-         case Movie.REGULAR:
-            result += 2;
-            if (_daysRented > 2)
-               result += (_daysRented - 2) * 1.5;
-            break;
-
-         case Movie.NEW_RELEASE:
-            result += _daysRented * 3;
-            break;
-
-         case Movie.CHILDRENS:
-            result += 1.5;
-            if (_daysRented > 3)
-               result += (_daysRented - 3) * 1.5;
-            break;
-      }
-
-      return result;
+      return _movie.getCharge(_daysRented);
    }
 
    public int getFrequentRenterPoints() {
       if ((_movie.getPriceCode() == Movie.NEW_RELEASE) &&
           _daysRented > 1) {
-         return 2;   // com bônus
+         return 2;
       }
-      return 1;      // caso geral
+      return 1;
    }
 }
