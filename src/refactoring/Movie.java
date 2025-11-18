@@ -7,7 +7,7 @@ public class Movie {
   public static final int  NEW_RELEASE = 1;
 
   private String _title;
-  private Price _price;   // antes era int _priceCode
+  private Price _price;
 
   public Movie(String title, int priceCode) {
       _title = title;
@@ -38,7 +38,6 @@ public class Movie {
       return _title;
   }
 
-  // AGORA SÓ DELEGA PARA _price
   public double getCharge(int daysRented) {
       return _price.getCharge(daysRented);
   }
